@@ -139,7 +139,7 @@ export class TranslationModalComponent {
     };
   }
 
-  validateParagraphCopy($event: any): boolean {
+  validateParagraphCopy($event: MouseEvent): boolean {
     // Mathematical equations are also wrapped by <p> elements.
     // Hence, math elements should be allowed to be copied.
     // See issue #11683.
@@ -198,7 +198,8 @@ export class TranslationModalComponent {
     this.previousTranslationAvailable = textAndAvailability.more;
   }
 
-  getElementTexts = function(elements: [HTMLElement], type: string): any[] {
+  getElementTexts = function(
+    elements: [HTMLElement], type: string): HTMLElement[] {
     const textWrapperLength = 6;
     const attributes = Array.from(elements, function(element: HTMLElement) {
       if (element.localName === 'oppia-noninteractive-image') {
@@ -228,7 +229,8 @@ export class TranslationModalComponent {
   };
 
   isTranslationCompleted = function(
-      originalElements: [HTMLElement], translatedElements: [HTMLElement]): boolean {
+      originalElements: [HTMLElement],
+      translatedElements: [HTMLElement]): boolean {
     const originalHtmlElements = Array.from(
       originalElements, element => element.nodeName);
     const translatedHtmlElements = Array.from(
@@ -265,7 +267,8 @@ export class TranslationModalComponent {
   };
 
   validateTranslation = function(
-      textToTranslate: any, translatedText: any): TranslationError {
+      textToTranslate: JQuery<HTMLElement>,
+      translatedText: JQuery<HTMLElement>): TranslationError {
     const translatedElements = this.getTexts(translatedText);
     const originalElements = this.getTexts(textToTranslate);
 

@@ -212,7 +212,7 @@ describe('Translation Modal Component', () => {
       component.ngOnInit();
     }));
 
-    it('should broadcast the clicked element when a math equation ' +
+    it('should broadcast the clicked element when a math equation' +
     ' is clicked', () => {
       target = document.createElement('p');
       const mathChild = document.createElement('oppia-noninteractive-math');
@@ -368,8 +368,8 @@ describe('Translation Modal Component', () => {
       'img_20210129_210552_zbv0mdty94_height_54_width_490.png&amp;quot;">' +
       '</oppia-noninteractive-image>';
       component.activeWrittenTranslation.html = '';
-      const translationSpy = spyOn(translateTextService,
-        'suggestTranslatedText');
+      const translationSpy = spyOn(
+        translateTextService, 'suggestTranslatedText');
 
       component.suggestTranslatedText();
 
@@ -391,8 +391,8 @@ describe('Translation Modal Component', () => {
       '"&amp;quot;Image caption&amp;quot;" filepath-with-value="&amp;quot;' +
       'img_20210129_210552_zbv0mdty94_height_54_width_490.png&amp;quot;">' +
       '</oppia-noninteractive-image>';
-      const translationSpy = spyOn(translateTextService,
-        'suggestTranslatedText').and.callThrough();
+      const translationSpy = spyOn(
+        translateTextService, 'suggestTranslatedText').and.callThrough();
 
       component.suggestTranslatedText();
 
@@ -404,8 +404,8 @@ describe('Translation Modal Component', () => {
       component.textToTranslate = '<p>First</p><p>Second</p>';
       component.activeWrittenTranslation.html =
       '<p>ABC</p>';
-      const translationSpy = spyOn(translateTextService,
-        'suggestTranslatedText').and.callThrough();
+      const translationSpy = spyOn(
+        translateTextService, 'suggestTranslatedText').and.callThrough();
 
       component.suggestTranslatedText();
 
@@ -428,8 +428,8 @@ describe('Translation Modal Component', () => {
       '</oppia-noninteractive-image>';
       expectedPayload.translation_html = component
         .activeWrittenTranslation.html;
-      const translationSpy = spyOn(translateTextService,
-        'suggestTranslatedText').and.callThrough();
+      const translationSpy = spyOn(
+        translateTextService, 'suggestTranslatedText').and.callThrough();
 
       component.suggestTranslatedText();
 

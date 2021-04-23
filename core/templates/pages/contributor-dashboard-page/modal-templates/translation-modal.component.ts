@@ -199,7 +199,7 @@ export class TranslationModalComponent {
   }
 
   getElementTexts = function(
-    elements: [HTMLElement], type: string): HTMLElement[] {
+      elements: [HTMLElement], type: string): HTMLElement[] {
     const textWrapperLength = 6;
     const attributes = Array.from(elements, function(element: HTMLElement) {
       if (element.localName === 'oppia-noninteractive-image') {

@@ -212,7 +212,8 @@ describe('Translation Modal Component', () => {
       component.ngOnInit();
     }));
 
-    it('should broadcast the clicked element when a math equation is clicked', () => {
+    it('should broadcast the clicked element when a math equation ' +
+    ' is clicked', () => {
       target = document.createElement('p');
       const mathChild = document.createElement('oppia-noninteractive-math');
       target.appendChild(mathChild);
@@ -226,7 +227,8 @@ describe('Translation Modal Component', () => {
       expect(broadcastSpy).toHaveBeenCalledWith(target);
     });
 
-    it('should not broadcast the clicked element when a paragraph is clicked', () => {
+    it('should not broadcast the clicked element when a paragraph is' +
+    ' clicked', () => {
       target = document.createElement('p');
       target.onclick = function(this, ev) {
         propagationSpy = spyOn(ev, 'stopPropagation').and.stub();
@@ -238,7 +240,8 @@ describe('Translation Modal Component', () => {
       expect(broadcastSpy).not.toHaveBeenCalledWith(target);
     });
 
-    it('should broadcast the clicked element when a non paragraph element is clicked', () => {
+    it('should broadcast the clicked element when a non paragraph' +
+    ' element is clicked', () => {
       target = document.createElement('img');
       target.onclick = function(this, ev) {
         propagationSpy = spyOn(ev, 'stopPropagation').and.stub();
@@ -356,27 +359,29 @@ describe('Translation Modal Component', () => {
       flushMicrotasks();
     }));
 
-    it('should not register Contributor Dashboard submit suggestion event when' +
-    ' all images are not copied when suggesting translated text', fakeAsync(() => {
-      component.textToTranslate = '<oppia-noninteractive-image alt-with-value=' +
-      '"&amp;quot;Image description&amp;quot;" caption-with-value=' +
+    it('should not register Contributor Dashboard submit suggestion event' +
+    ' when all images are not copied when suggesting translated' +
+    'text', fakeAsync(() => {
+      component.textToTranslate = '<oppia-noninteractive-image alt-with' +
+      '-value="&amp;quot;Image description&amp;quot;" caption-with-value=' +
       '"&amp;quot;Image caption&amp;quot;" filepath-with-value="&amp;quot;' +
       'img_20210129_210552_zbv0mdty94_height_54_width_490.png&amp;quot;">' +
       '</oppia-noninteractive-image>';
       component.activeWrittenTranslation.html = '';
-      const translationSpy = spyOn(translateTextService, 'suggestTranslatedText');
+      const translationSpy = spyOn(translateTextService,
+        'suggestTranslatedText');
 
       component.suggestTranslatedText();
 
       expect(translationSpy)
-          .toHaveBeenCalledTimes(0);
+        .toHaveBeenCalledTimes(0);
     }));
 
-    it('should not register Contributor Dashboard submit suggestion event when' +
-    ' alt text or description of images are not changed when suggesting' +
+    it('should not register Contributor Dashboard submit suggestion event' +
+    ' when alt text or description of images are not changed when suggesting' +
     ' translated text', fakeAsync(() => {
-      component.textToTranslate = '<oppia-noninteractive-image alt-with-value=' +
-      '"&amp;quot;Image description&amp;quot;" caption-with-value=' +
+      component.textToTranslate = '<oppia-noninteractive-image alt-with-' +
+      'value="&amp;quot;Image description&amp;quot;" caption-with-value=' +
       '"&amp;quot;Image caption&amp;quot;" filepath-with-value="&amp;quot;' +
       'img_20210129_210552_zbv0mdty94_height_54_width_490.png&amp;quot;">' +
       '</oppia-noninteractive-image>';
@@ -386,30 +391,32 @@ describe('Translation Modal Component', () => {
       '"&amp;quot;Image caption&amp;quot;" filepath-with-value="&amp;quot;' +
       'img_20210129_210552_zbv0mdty94_height_54_width_490.png&amp;quot;">' +
       '</oppia-noninteractive-image>';
-      const translationSpy = spyOn(translateTextService, 'suggestTranslatedText').and.callThrough();
+      const translationSpy = spyOn(translateTextService,
+        'suggestTranslatedText').and.callThrough();
 
       component.suggestTranslatedText();
 
       expect(translationSpy).toHaveBeenCalledTimes(0);
     }));
-  
-    it('should not register Contributor Dashboard submit suggestion event when' +
-    ' the translation is not completed', fakeAsync(() => {
+
+    it('should not register Contributor Dashboard submit suggestion event' +
+    ' when the translation is not completed', fakeAsync(() => {
       component.textToTranslate = '<p>First</p><p>Second</p>';
       component.activeWrittenTranslation.html =
       '<p>ABC</p>';
-      const translationSpy = spyOn(translateTextService, 'suggestTranslatedText').and.callThrough();
+      const translationSpy = spyOn(translateTextService,
+        'suggestTranslatedText').and.callThrough();
 
       component.suggestTranslatedText();
 
       expect(translationSpy).toHaveBeenCalledTimes(0);
     }));
-  
+
     it('should register Contributor Dashboard submit suggestion event when' +
     ' alt text or description of images are changed and all imgs are copied' +
     ' when suggesting translated text', fakeAsync(() => {
-      component.textToTranslate = '<oppia-noninteractive-image alt-with-value=' +
-      '"&amp;quot;Image description&amp;quot;" caption-with-value=' +
+      component.textToTranslate = '<oppia-noninteractive-image alt-with' +
+      '-value="&amp;quot;Image description&amp;quot;" caption-with-value=' +
       '"&amp;quot;Image caption&amp;quot;" filepath-with-value="&amp;quot;' +
       'img_20210129_210552_zbv0mdty94_height_54_width_490.png&amp;quot;">' +
       '</oppia-noninteractive-image>';
@@ -419,8 +426,10 @@ describe('Translation Modal Component', () => {
       '"&quot;caption&quot;" filepath-with-value="&amp;quot;' +
       'img_20210129_210552_zbv0mdty94_height_54_width_490.png&amp;quot;">' +
       '</oppia-noninteractive-image>';
-      expectedPayload.translation_html = component.activeWrittenTranslation.html;
-      const translationSpy = spyOn(translateTextService, 'suggestTranslatedText').and.callThrough();
+      expectedPayload.translation_html = component
+        .activeWrittenTranslation.html;
+      const translationSpy = spyOn(translateTextService,
+        'suggestTranslatedText').and.callThrough();
 
       component.suggestTranslatedText();
 

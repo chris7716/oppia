@@ -139,7 +139,7 @@ export class TranslationModalComponent {
     };
   }
 
-  validateParagraphCopy($event) {
+  validateParagraphCopy($event: any): boolean {
     // Mathematical equations are also wrapped by <p> elements.
     // Hence, math elements should be allowed to be copied.
     // See issue #11683.
@@ -150,7 +150,7 @@ export class TranslationModalComponent {
       paragraphChildrenElements.some(
         child => child.localName === 'oppia-noninteractive-math'));
     return triedTextCopy;
-  };
+  }
 
   close(): void {
     this.activeModal.close();
@@ -160,7 +160,7 @@ export class TranslationModalComponent {
     return this.HTML_SCHEMA;
   }
 
-  onContentClick(event: MouseEvent) {
+  onContentClick(event: MouseEvent): boolean {
     const paragraphCopyValidation = this.validateParagraphCopy(event);
     if (paragraphCopyValidation) {
       return this.triedToCopyText = true;
@@ -198,7 +198,7 @@ export class TranslationModalComponent {
     this.previousTranslationAvailable = textAndAvailability.more;
   }
 
-  getElementTexts = function(elements, type) {
+  getElementTexts = function(elements: [HTMLElement], type: string): any[] {
     const textWrapperLength = 6;
     const attributes = Array.from(elements, function(element: HTMLElement) {
       if (element.localName === 'oppia-noninteractive-image') {
@@ -211,14 +211,14 @@ export class TranslationModalComponent {
   };
 
   copiedAllElements = function(
-      originalElements, translatedElements) {
+      originalElements: [string], translatedElements: [string]): boolean {
     const hasMatchingTranslatedElement = (element) => (
       translatedElements.includes(element));
     return originalElements.every(hasMatchingTranslatedElement);
   };
 
   hasSomeDuplicateElements = function(
-      originalElements, translatedElements) {
+      originalElements: [], translatedElements: [string]): boolean {
     if (originalElements.length === 0) {
       return false;
     }
@@ -228,7 +228,7 @@ export class TranslationModalComponent {
   };
 
   isTranslationCompleted = function(
-      originalElements: [HTMLElement], translatedElements: [HTMLElement]) {
+      originalElements: [HTMLElement], translatedElements: [HTMLElement]): boolean {
     const originalHtmlElements = Array.from(
       originalElements, element => element.nodeName);
     const translatedHtmlElements = Array.from(
@@ -249,7 +249,7 @@ export class TranslationModalComponent {
     return true;
   };
 
-  getTexts = function(rawText) {
+  getTexts = function(rawText: string): {} {
     const foundImageFilePaths = this.getElementTexts(
       rawText, 'filepath-with-value');
     const foundImageAlts = this.getElementTexts(
@@ -265,7 +265,7 @@ export class TranslationModalComponent {
   };
 
   validateTranslation = function(
-      textToTranslate, translatedText): TranslationError {
+      textToTranslate: any, translatedText: any): TranslationError {
     const translatedElements = this.getTexts(translatedText);
     const originalElements = this.getTexts(textToTranslate);
 

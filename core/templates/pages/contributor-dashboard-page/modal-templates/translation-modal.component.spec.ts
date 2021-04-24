@@ -426,7 +426,7 @@ describe('Translation Modal Component', () => {
       '"&quot;caption&quot;" filepath-with-value="&amp;quot;' +
       'img_20210129_210552_zbv0mdty94_height_54_width_490.png&amp;quot;">' +
       '</oppia-noninteractive-image>';
-      expectedPayload.translation_html = component
+      expectedPayload.change.translation_html = component
         .activeWrittenTranslation.html;
       const translationSpy = spyOn(
         translateTextService, 'suggestTranslatedText').and.callThrough();

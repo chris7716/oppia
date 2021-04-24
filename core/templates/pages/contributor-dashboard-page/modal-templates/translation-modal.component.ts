@@ -143,10 +143,11 @@ export class TranslationModalComponent {
     // Mathematical equations are also wrapped by <p> elements.
     // Hence, math elements should be allowed to be copied.
     // See issue #11683.
-    const paragraphChildrenElements: HTMLElement[] = (
-      $event.target.localName === 'p') ? Array.from(
-        $event.target.children) : [];
-    const triedTextCopy = $event.target.localName === 'p' && !(
+    const element = $event.target as HTMLElement;
+    const paragraphChildrenElements: Element[] = (
+      element.localName === 'p') ? Array.from(
+        element.children) : [];
+    const triedTextCopy = element.localName === 'p' && !(
       paragraphChildrenElements.some(
         child => child.localName === 'oppia-noninteractive-math'));
     return triedTextCopy;
